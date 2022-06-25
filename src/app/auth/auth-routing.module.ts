@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegistryComponent } from './components/registry/registry.component';
+import { TokenGuard } from './guards/token.guard';
 
 const routes: Routes = [
   {
@@ -17,11 +18,14 @@ const routes: Routes = [
     path: 'registry',
     component: RegistryComponent
   },
-
+  {
+    path: 'tokens',
+    canActivate: [TokenGuard]
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AuthRoutingModule {}

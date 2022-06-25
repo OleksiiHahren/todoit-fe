@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from '../../../core/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenService: TokenService,
+              private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    this.tokenService.removeJwtToken();
+    this.tokenService.removeRefreshToken();
+    this.router.navigate(['auth/login'])
   }
 
 }

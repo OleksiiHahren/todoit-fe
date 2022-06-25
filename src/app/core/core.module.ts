@@ -6,13 +6,16 @@ import { environment } from '../../environments/environment';
 import { InMemoryCache } from '@apollo/client/core';
 import { NotLoginGuard } from './guards/not-login.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from '../auth/services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     {
@@ -21,14 +24,15 @@ import { AuthGuard } from './guards/auth.guard';
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: environment.backendUrl,
+            uri: environment.backendUrlGraphQl,
           }),
         };
       },
       deps: [HttpLink],
     },
     NotLoginGuard,
-    AuthGuard
+    AuthGuard,
+    AuthService,
   ],
 
 })

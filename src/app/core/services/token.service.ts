@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 export enum AuthKeys {
-  jwt_token = 'jwt_token',
-  refresh_token = 'refresh_token',
+  jwt_token = 'accessToken',
+  refresh_token = 'refreshToken',
 }
 
 @Injectable({providedIn: 'root'})

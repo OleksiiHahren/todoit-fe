@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivate,
+  CanActivate, CanLoad,
   Router,
   RouterStateSnapshot,
   UrlTree
@@ -10,13 +10,11 @@ import { Observable } from 'rxjs';
 import { TokenService } from '../services/token.service';
 
 @Injectable()
-export class NotLoginGuard implements CanActivate {
+export class NotLoginGuard implements CanLoad {
   constructor(private tokenService: TokenService,
               private router: Router) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    debugger
+  canLoad(
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.tokenService.jwtTokenExists()) {
       this.router.navigate(['/main']);
     }

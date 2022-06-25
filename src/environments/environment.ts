@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:3000/graphql'
+  backendUrlGraphQl: 'http://localhost:3000/graphql',
+  backendUrlGoogle: 'http://localhost:3000/auth/google'
 };
 
 /*

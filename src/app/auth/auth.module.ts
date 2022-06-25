@@ -18,6 +18,6 @@ import { MatButtonModule } from '@angular/material/button';
     AuthRoutingModule,
     SharedModule,
     MatButtonModule
-  ]
+  ],
 })
 export class AuthModule { }

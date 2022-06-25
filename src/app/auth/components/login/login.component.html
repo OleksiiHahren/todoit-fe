@@ -1,6 +1,6 @@
-<div class="wrapper">
-  <mat-card class="login-window">
-    <h3>Login</h3>
+<div class="wrapper" fxLayout="row">
+  <mat-card class="login-window" fxFlex="500px">
+    <h1>Login to Todoid</h1>
     <form class="login-form">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
@@ -13,7 +13,7 @@
                placeholder="Ex. pat@example.com">
       </mat-form-field>
     </form>
-    <div class="button-wrapper">
+    <div class="button-wrapper" fxLayout.xl="column">
       <button mat-stroked-button
               color="accent"
               class="basic">
@@ -25,6 +25,13 @@
       >
         Sign up
       </button>
+      <div class="google-icon-wrapper"
+           fxLayout.xl="column"
+           fxFlexAlign="center"
+           [matTooltip]="'login by Google'"
+           (click)="googleAuth()">
+        <img src="./assets/google-icon.png">
+      </div>
     </div>
   </mat-card>
 </div>

@@ -10,7 +10,7 @@ export class AuthGuard implements CanLoad {
   canLoad(
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.tokenService.jwtTokenExists()) {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['auth/login']);
     }
     return this.tokenService.jwtTokenExists();
   }
