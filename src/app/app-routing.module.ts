@@ -20,6 +20,12 @@ const routes: Routes = [
       .then((m) => m.WorkspaceModule),
     canLoad: [AuthGuard],
   },
+  {
+    path: 'account',
+    loadChildren: () => import('./user/user.module')
+      .then((m) => m.UserModule),
+    canLoad: [AuthGuard],
+  },
 ];
 
 @NgModule({

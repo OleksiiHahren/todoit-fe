@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { APOLLO_OPTIONS} from 'apollo-angular';
-import {HttpLink} from 'apollo-angular/http';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 import { environment } from '../../environments/environment';
 import { InMemoryCache } from '@apollo/client/core';
 import { NotLoginGuard } from './guards/not-login.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from '../auth/services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -15,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    ApolloModule
   ],
   providers: [
     {
@@ -25,8 +26,11 @@ import { HttpClientModule } from '@angular/common/http';
           cache: new InMemoryCache(),
           link: httpLink.create({
             uri: environment.backendUrlGraphQl,
-          }),
-        };
+            headers: new HttpHeaders().set(
+              'Authorization', 'Bearer ' // TODO figure out how to make interceptors
+            )
+      }),
+      }
       },
       deps: [HttpLink],
     },

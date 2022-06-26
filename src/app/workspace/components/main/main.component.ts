@@ -21,4 +21,8 @@ export class MainComponent implements OnInit {
     this.router.navigate(['auth/login'])
   }
 
+  goToAccount(){
+    this.router.navigate(['/account'])
+  }
+
 }
