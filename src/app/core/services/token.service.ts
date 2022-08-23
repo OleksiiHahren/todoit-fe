@@ -11,8 +11,8 @@ export class TokenService {
     return localStorage.getItem(AuthKeys.jwt_token);
   }
 
-  getRefreshToken(): string | null {
-    return localStorage.getItem(AuthKeys.refresh_token);
+  getRefreshToken(): string {
+    return localStorage.getItem(AuthKeys.refresh_token) || '';
   }
 
   setJwtToken(token: string): void {

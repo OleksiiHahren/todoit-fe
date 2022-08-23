@@ -7,7 +7,12 @@ import { InMemoryCache } from '@apollo/client/core';
 import { NotLoginGuard } from './guards/not-login.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from '../auth/services/auth.service';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  HttpHeaders
+} from '@angular/common/http';
+import { AuthHttpInterceptor } from './interceptors/token-interceptor.service';
 
 
 
@@ -26,14 +31,12 @@ import { HttpClientModule, HttpHeaders } from '@angular/common/http';
           cache: new InMemoryCache(),
           link: httpLink.create({
             uri: environment.backendUrlGraphQl,
-            headers: new HttpHeaders().set(
-              'Authorization', 'Bearer ' // TODO figure out how to make interceptors
-            )
       }),
       }
       },
       deps: [HttpLink],
     },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
     NotLoginGuard,
     AuthGuard,
     AuthService,

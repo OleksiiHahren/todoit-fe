@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Apollo, gql } from 'apollo-angular';
-import { UserInterface } from '../interfaces/user.interface';
+import { UserInterface } from '../../core/interfaces/user.interface';
 
 const User = gql`
   query {
@@ -27,7 +27,6 @@ export class UserAccountResolver implements Resolve<Observable<UserInterface>> {
    return this.apollo.query<UserInterface>({
       query: User
     }).pipe(map(result => {
-      console.log(result)
       return result.data
       }));
   }

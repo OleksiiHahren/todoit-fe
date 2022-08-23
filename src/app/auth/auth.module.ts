@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistryComponent } from './components/registry/registry.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,11 +14,12 @@ import { MatButtonModule } from '@angular/material/button';
     LoginComponent,
     RegistryComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    SharedModule,
-    MatButtonModule
-  ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        SharedModule,
+        MatButtonModule,
+        ReactiveFormsModule
+    ],
 })
 export class AuthModule { }

@@ -1,1 +1,57 @@
+<div class="wrapper" fxLayout="row">
+  <mat-card class="login-window" fxFlex="500px">
+    <h1>Sign up to Todoit</h1>
+    <form [formGroup]="formData" class="login-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>First name</mat-label>
+        <input formControlName="firstName" type="text" matInput
+               placeholder="first name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="lastName" type="text" matInput
+               placeholder="last name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" type="email" matInput
+               placeholder="Ex. pat@example.com">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" type="password" matInput
+               placeholder="password">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Repeat password</mat-label>
+        <input formControlName="repeatPassword" type="password" matInput
+               placeholder="repat password">
+      </mat-form-field>
+    </form>
+    <div class="button-wrapper" fxLayout.xl="column">
+      <button mat-stroked-button
+              color="accent"
+              class="basic"
+              (click)="onSignIn()"
+      >
+        Login
+      </button>
+      <button mat-stroked-button
+              color="primary"
+              class="basic"
+              (click)="signUp()"
+      >
+        Sign up
+      </button>
+      <div class="google-icon-wrapper"
+           fxLayout.xl="column"
+           fxFlexAlign="center"
+           [matTooltip]="'login by Google'"
+           (click)="googleAuth()">
+        <img src="./assets/google-icon.png">
+      </div>
+    </div>
+  </mat-card>
+</div>
+
 <p>registry works!</p>

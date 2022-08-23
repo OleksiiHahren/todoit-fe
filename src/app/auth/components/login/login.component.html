@@ -1,27 +1,30 @@
 <div class="wrapper" fxLayout="row">
   <mat-card class="login-window" fxFlex="500px">
     <h1>Login to Todoid</h1>
-    <form class="login-form">
+    <form [formGroup]="formData" class="login-form">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
-        <input type="email" matInput
+        <input formControlName="email" type="email" matInput
                placeholder="Ex. pat@example.com">
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Password</mat-label>
-        <input type="password" matInput
+        <input formControlName="password" type="password" matInput
                placeholder="Ex. pat@example.com">
       </mat-form-field>
     </form>
     <div class="button-wrapper" fxLayout.xl="column">
       <button mat-stroked-button
               color="accent"
-              class="basic">
+              class="basic"
+              (click)="signIn()"
+      >
         Login
       </button>
       <button mat-stroked-button
               color="primary"
               class="basic"
+              (click)="onSignUp()"
       >
         Sign up
       </button>

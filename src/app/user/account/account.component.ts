@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserInterface } from '../interfaces/user.interface';
+import { UserInterface } from '../../core/interfaces/user.interface';
 
 @Component({
   selector: 'app-account',
