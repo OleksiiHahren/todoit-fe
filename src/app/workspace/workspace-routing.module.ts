@@ -4,7 +4,16 @@ import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [{
   path: '',
-  component: MainComponent
+  component: MainComponent,
+  children: [{
+    path: '',
+    redirectTo: 'task-list'
+  },
+    {
+      path: 'task-list',
+      loadChildren: () => import('../task/task.module').then((m) => m.TaskModule),
+    },
+  ]
 }
 ];
 

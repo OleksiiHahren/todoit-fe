@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <div *ngIf="tasks$ | async as data">
+    <mat-card *ngFor="let task of data.taskIncomes">
+      {{task.name}}
+    </mat-card>
+
+  </div>
+</div>
+

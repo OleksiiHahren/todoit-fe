@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  toggleSideBar = false;
 
   constructor(private tokenService: TokenService,
               private router: Router) { }

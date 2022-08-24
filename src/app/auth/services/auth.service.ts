@@ -7,9 +7,7 @@ import { LoginInterface } from '../interfaces/login.interface';
 import { AuthResponseInterface } from '../interfaces/auth-response.interface';
 
 import { SignUpInterface } from '../interfaces/sign-up.interface';
-import {
-  RefreshTokenMutation
-} from './refresh-token-mutations.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +32,17 @@ export class AuthService {
     }
   `;
 
+  readonly refreshTokenMutation = gql`
+    mutation refreshToken($refreshToken: String!) {
+      refreshToken(refreshToken: $refreshToken) {
+      accessToken
+      refreshToken
+      }
+    }
+  `;
+
 
   constructor(private http: HttpClient,
-    private refreshTokenMutation: RefreshTokenMutation,
     private apollo: Apollo) { }
 
   googleAuth(): Observable<any> {
@@ -67,8 +73,9 @@ export class AuthService {
   }
 
   updateTokens(refreshToken: string): Observable<AuthResponseInterface> {
-    return this.refreshTokenMutation.mutate({
-      refreshToken
+    return this.apollo.mutate({
+      mutation: this.refreshTokenMutation,
+      variables: {refreshToken: refreshToken}
     }).pipe(map((result) => {
       return result.data;
     })) as Observable<AuthResponseInterface>;
