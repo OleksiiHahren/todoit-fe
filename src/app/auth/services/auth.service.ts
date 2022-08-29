@@ -73,11 +73,11 @@ export class AuthService {
   }
 
   updateTokens(refreshToken: string): Observable<AuthResponseInterface> {
-    return this.apollo.mutate({
+    return this.apollo.mutate<{refreshToken: AuthResponseInterface}> ({
       mutation: this.refreshTokenMutation,
       variables: {refreshToken: refreshToken}
     }).pipe(map((result) => {
-      return result.data;
+      return  result.data?.refreshToken;
     })) as Observable<AuthResponseInterface>;
 
   }
