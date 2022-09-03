@@ -1,0 +1,65 @@
+<div class="side-nav">
+  <div class="d-flex flex-direction-column list">
+    <div mat-ripple class="list-item d-flex align-item-center">
+      <mat-icon class="icon blue">inbox</mat-icon>
+      <span>Inbox</span>
+    </div>
+    <div mat-ripple class="list-item d-flex align-item-center">
+      <mat-icon class="icon green">today</mat-icon>
+      <span>Today</span>
+    </div>
+    <div mat-ripple class="list-item d-flex align-item-center">
+      <mat-icon class="icon pink">next_week</mat-icon>
+      <span>Future</span>
+    </div>
+    <div mat-ripple class="list-item d-flex align-item-center">
+      <mat-icon class="icon orange">apps</mat-icon>
+      <span>Filters</span>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel
+                           class="mat-elevation-z0"
+                           [togglePosition]="'before'"
+                           (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+
+          <mat-panel-title>
+            <span class="left">Favorite</span>
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <div mat-ripple class="expansion-list-item">
+          Some item
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel
+        class="mat-elevation-z0"
+        [togglePosition]="'before'"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+
+          <mat-panel-title>
+            <span class="left">Projects</span>
+            <button mat-icon-button>
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <div mat-ripple class="expansion-list-item">
+          Some item
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+

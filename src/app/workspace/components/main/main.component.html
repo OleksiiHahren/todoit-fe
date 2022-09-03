@@ -1,39 +1,41 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <h4>Todoid</h4>
-    <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label>Clearable input</mat-label>
-      <input matInput type="text" placeholder="Search">
-      <mat-icon matPrefix>search</mat-icon>
-      <button matSuffix mat-icon-button aria-label="Clear">
-        <mat-icon>close</mat-icon>
+  <mat-toolbar-row class="d-flex space-between">
+    <div class="d-flex align-item-center justify-content-center">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
       </button>
-    </mat-form-field>
-    <div>
-      <div class="account-wrapper">
-        <button mat-icon-button
-                (click)="goToAccount()"
-        >
-          <mat-icon>account_circle</mat-icon>
+      <button type="button" mat-button (click)="goToAccount()">
+        <mat-icon>home</mat-icon>
+      </button>
+      <h4 class="app-label">Todoid</h4>
+      <mat-form-field class="global-search" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" placeholder="Search">
+        <mat-icon matPrefix>search</mat-icon>
+        <button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>close</mat-icon>
         </button>
-      </div>
-      <button mat-icon-button
-              (click)="logout()"
-      >
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex align-item-center justify-content-center">
+      <button type="button" mat-button (click)="addNewTask()">
+        <mat-icon>add_box</mat-icon>
+      </button>
+      <button type="button" mat-button (click)="goToAccount()">
+        <mat-icon>account_box</mat-icon>
+      </button>
+      <button type="button" mat-button (click)="logout()">
         <mat-icon>logout</mat-icon>
       </button>
     </div>
+
   </mat-toolbar-row>
-  <button type="button" mat-button (click)="drawer.toggle()">
-    Toggle sidenav
-  </button>
 </mat-toolbar>
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-
+<mat-drawer-container class="content-container" autosize>
+  <mat-drawer #drawer class="sidebar" mode="side">
+    <app-side-nav></app-side-nav>
   </mat-drawer>
-
   <div class="example-sidenav-content">
     <router-outlet>
     </router-outlet>

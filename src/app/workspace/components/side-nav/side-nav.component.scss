@@ -1,0 +1,46 @@
+.side-nav {
+  font-size: 16px;
+
+  .list {
+    .list-item {
+      cursor: pointer;
+      padding: 20px;
+      .icon {
+        margin-right: 20px;
+        margin-left: 20px;
+      }
+      .blue {
+        color: royalblue;
+      }
+      .green {
+        color: limegreen;
+      }
+      .pink {
+        color: pink;
+      }
+      .orange {
+        color: orange;
+      }
+    }
+  }
+  ::ng-deep mat-accordion {
+    mat-expansion-panel-header {
+      height: 60px;
+      padding-left: 45px;
+      font-size: 16px;
+      font-family: AlmaSans, "AlmaSans", sans-serif !important;
+    }
+    .mat-expansion-panel-body {
+      padding: 0;
+      .expansion-list-item {
+        cursor: pointer;
+        padding: 20px 20px 20px 40px;
+        font-size: 16px;
+        font-family: AlmaSans, "AlmaSans", sans-serif !important;
+      }
+    }
+  }
+  mat-expansion-panel {
+  }
+}
+

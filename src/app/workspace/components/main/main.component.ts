@@ -11,19 +11,23 @@ export class MainComponent implements OnInit {
   toggleSideBar = false;
 
   constructor(private tokenService: TokenService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  logout(){
-    this.tokenService.removeJwtToken();
-    this.tokenService.removeRefreshToken();
-    this.router.navigate(['auth/login'])
+  addNewTask(): void {
+
   }
 
-  goToAccount(){
-    this.router.navigate(['/account'])
+  logout() {
+    this.tokenService.removeJwtToken();
+    this.tokenService.removeRefreshToken();
+    this.router.navigate(['auth/login']);
+  }
+
+  goToAccount() {
+    this.router.navigate(['/account']);
   }
 
 }

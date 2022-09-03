@@ -1,4 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+  font-family: "AlmaSans";
+  src: url("../src/assets/fonts/AlmaSans-Regular.otf");
+}
+
+html, body { height: 100%;
+  margin: 0; font-family: AlmaSans, "AlmaSans", sans-serif !important;}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-direction-column {
+ flex-direction: column;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-item-center {
+  align-items: center;
+}
+.space-between {
+  justify-content: space-between;
+}
