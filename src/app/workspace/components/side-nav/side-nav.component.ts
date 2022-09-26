@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  ModalWrapperComponent
+} from '../../../shared/modal/components/modal-wrapper/modal-wrapper.component';
+import { ModalTypesEnum } from '../../../core/enums/modal-types.enum';
 
 
 @Component({
@@ -12,10 +17,19 @@ import { Component, OnInit } from '@angular/core';
 export class SideNavComponent implements OnInit {
   panelOpenState = false;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
   }
 
+  createProject(event: Event){
+    event.stopPropagation();
+    this.dialog.open(ModalWrapperComponent, {
+      data: {
+        payload: null,
+        type: ModalTypesEnum.Project
+      }
+    })
+  }
 }

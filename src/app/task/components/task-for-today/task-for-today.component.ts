@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/task.service';
 import { Observable } from 'rxjs';
+import { TaskService } from '../../services/task.service';
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  selector: 'app-task-for-today',
+  templateUrl: './task-for-today.component.html',
+  styleUrls: ['./task-for-today.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class TaskForTodayComponent implements OnInit {
 
   tasks$!: Observable<any>;
 

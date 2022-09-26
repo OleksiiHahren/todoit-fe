@@ -34,9 +34,10 @@
 </mat-toolbar>
 <mat-drawer-container class="content-container" autosize>
   <mat-drawer #drawer class="sidebar" mode="side">
-    <app-side-nav></app-side-nav>
+    <app-side-nav role="navigation">
+    </app-side-nav>
   </mat-drawer>
-  <div class="example-sidenav-content">
+  <div class="sidenav-content">
     <router-outlet>
     </router-outlet>
   </div>

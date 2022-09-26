@@ -1,9 +1,8 @@
 <div class="wrapper">
-  <div *ngIf="taskService.incomeTasks$ | async as data">
+  <div *ngIf="taskService.todayTasks$ | async as data">
     <mat-card *ngFor="let task of data">
       {{task.name}}
     </mat-card>
 
   </div>
 </div>
-

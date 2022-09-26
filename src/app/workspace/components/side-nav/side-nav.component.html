@@ -2,11 +2,11 @@
   <div class="d-flex flex-direction-column list">
     <div mat-ripple class="list-item d-flex align-item-center">
       <mat-icon class="icon blue">inbox</mat-icon>
-      <span>Inbox</span>
+      <span routerLink="/income">Inbox</span>
     </div>
     <div mat-ripple class="list-item d-flex align-item-center">
       <mat-icon class="icon green">today</mat-icon>
-      <span>Today</span>
+      <span routerLink="/today">Today</span>
     </div>
     <div mat-ripple class="list-item d-flex align-item-center">
       <mat-icon class="icon pink">next_week</mat-icon>
@@ -48,7 +48,7 @@
           <mat-panel-title>
             <span class="left">Projects</span>
             <button mat-icon-button>
-              <mat-icon>add</mat-icon>
+              <mat-icon (click)="createProject($event)">add</mat-icon>
             </button>
           </mat-panel-title>
 

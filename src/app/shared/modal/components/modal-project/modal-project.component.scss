@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 270px;
+
+  .button-row {
+    margin-top:20px;
+  }
+  .ml {
+    margin-left: 20px;
+  }
+}

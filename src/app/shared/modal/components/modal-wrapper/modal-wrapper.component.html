@@ -1,0 +1,13 @@
+<div [ngSwitch]="data.type">
+  <div *ngSwitchCase="modalTypesEnum.Filter">
+
+  </div>
+  <div *ngSwitchCase="modalTypesEnum.Project">
+    <app-modal-project (sendEvent)="onDelegation($event)">
+    </app-modal-project>
+  </div>
+  <div *ngSwitchCase="modalTypesEnum.Task">
+    <app-modal-task (sendEvent)="onDelegation($event)">
+    </app-modal-task>
+  </div>
+</div>
