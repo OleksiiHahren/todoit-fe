@@ -23,7 +23,6 @@ export class ModalWrapperComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data.type)
   }
 
   onDelegation(data: ProjectInterface | TaskItemInterface | null):void {

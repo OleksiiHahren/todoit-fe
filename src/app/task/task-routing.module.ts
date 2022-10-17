@@ -4,6 +4,9 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import {
   TaskForTodayComponent
 } from './components/task-for-today/task-for-today.component';
+import {
+  TaskUpcomingComponent
+} from './components/task-upcoming/task-upcoming.component';
 
 const routes: Routes = [{
   path: '',
@@ -16,6 +19,10 @@ const routes: Routes = [{
   {
     path: 'today',
     component: TaskForTodayComponent
+  },
+  {
+    path: 'upcoming',
+    component: TaskUpcomingComponent
   }
 
 ];

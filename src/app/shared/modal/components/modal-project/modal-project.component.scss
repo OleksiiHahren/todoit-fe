@@ -5,9 +5,41 @@
   height: 270px;
 
   .button-row {
-    margin-top:20px;
+    margin-top: 20px;
   }
+
   .ml {
     margin-left: 20px;
   }
 }
+
+.mat-option-text{
+  display: flex !important;
+  vertical-align: center;
+  justify-content: space-between;
+
+  .color-dot {
+    margin-left: 20px;
+    margin-top: 10px;
+    display: flex;
+    width: 18px;
+    height: 18px;
+    border-radius: 20px;
+  }
+}
+
+mat-select-trigger {
+  display: flex !important;
+  vertical-align: center;
+  justify-content: space-between;
+  .color-dot {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    width: 18px;
+    height: 18px;
+    border-radius: 20px;
+  }
+}
+
+

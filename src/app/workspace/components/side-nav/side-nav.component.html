@@ -1,16 +1,23 @@
 <div class="side-nav">
   <div class="d-flex flex-direction-column list">
-    <div mat-ripple class="list-item d-flex align-item-center">
+    <div mat-ripple class="list-item d-flex align-item-center"
+         routerLink="task-list/income"
+         routerLinkActive="active-link">
       <mat-icon class="icon blue">inbox</mat-icon>
-      <span routerLink="/income">Inbox</span>
+      <a>Inbox</a>
     </div>
-    <div mat-ripple class="list-item d-flex align-item-center">
+    <div mat-ripple class="list-item d-flex align-item-center"
+         routerLink="task-list/today"
+         routerLinkActive="active-link"
+    >
       <mat-icon class="icon green">today</mat-icon>
-      <span routerLink="/today">Today</span>
+      <a routerLink="task-list/today">Today</a>
     </div>
-    <div mat-ripple class="list-item d-flex align-item-center">
+    <div mat-ripple class="list-item d-flex align-item-center"
+         routerLink="task-list/upcoming"
+         routerLinkActive="active-link">
       <mat-icon class="icon pink">next_week</mat-icon>
-      <span>Future</span>
+      <span>Upcoming</span>
     </div>
     <div mat-ripple class="list-item d-flex align-item-center">
       <mat-icon class="icon orange">apps</mat-icon>
@@ -31,8 +38,8 @@
 
         </mat-expansion-panel-header>
 
-        <div mat-ripple class="expansion-list-item">
-          Some item
+        <div mat-ripple *ngFor="let item of favoriteProjects" class="expansion-list-item">
+          {{item.name}}
         </div>
 
       </mat-expansion-panel>
@@ -54,8 +61,8 @@
 
         </mat-expansion-panel-header>
 
-        <div mat-ripple class="expansion-list-item">
-          Some item
+        <div mat-ripple *ngFor="let item of favoriteProjects" class="expansion-list-item">
+          {{item.name}}
         </div>
 
       </mat-expansion-panel>

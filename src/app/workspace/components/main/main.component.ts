@@ -6,11 +6,15 @@ import {
   ModalWrapperComponent
 } from '../../../shared/modal/components/modal-wrapper/modal-wrapper.component';
 import { ModalTypesEnum } from '../../../core/enums/modal-types.enum';
-import { filter, switchMap } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { TaskService } from '../../../task/services/task.service';
 import {
   TaskItemInterface
 } from '../../../task/interfaces/task-item.interface';
+import {
+  ProjectItemInterface
+} from '../../../task/interfaces/project-item.interface';
+import { ProjectService } from '../../../task/services/project.service';
 
 @Component({
   selector: 'app-main',
@@ -20,13 +24,22 @@ import {
 export class MainComponent implements OnInit {
   toggleSideBar = false;
 
+  favoriteProjects$: Observable<ProjectItemInterface[]>;
+  projects$: Observable<ProjectItemInterface[]>;
+
   constructor(private tokenService: TokenService,
     public dialog: MatDialog,
     private router: Router,
-    private taskService: TaskService
-  ) { }
+    private taskService: TaskService,
+    private projectService: ProjectService
+  ) {
+    this.favoriteProjects$ = this.projectService.favoriteProjects$;
+    this.projects$ = this.projectService.allProjects$;
+  }
 
   ngOnInit(): void {
+    this.projectService.getFavoriteProjects();
+    this.projectService.getOwnProjects();
   }
 
   addNewTask(): void {
@@ -38,7 +51,7 @@ export class MainComponent implements OnInit {
     })
       .afterClosed()
       .pipe(filter(res => res !== null))
-      .subscribe(res=> this.#addTask(res));
+      .subscribe(res => this.#addTask(res));
   }
 
   logout() {
@@ -56,6 +69,10 @@ export class MainComponent implements OnInit {
     ).subscribe(
       res => this.taskService.getAllIncomeTasks()
     );
+  }
+
+  #addProject(data: ProjectItemInterface) {
+    this.projectService.createProject(data);
   }
 
 }

@@ -16,5 +16,8 @@
   width: 260px;
 }
 .sidenav-content {
-  background-color: rgba(42, 39, 39, 0.71);
+  padding: 30px 0px;
+  height: calc(100vh - 65px);
+  max-width: 900px;
+  margin: 0 auto;
 }

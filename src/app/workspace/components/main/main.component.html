@@ -33,8 +33,12 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-drawer-container class="content-container" autosize>
-  <mat-drawer #drawer class="sidebar" mode="side">
-    <app-side-nav role="navigation">
+  <mat-drawer #drawer class="sidebar" mode="side" opened>
+    <app-side-nav role="navigation"
+
+                  [favoriteProjects]="favoriteProjects$ | async"
+                  [allProjects]="projects$ | async"
+    >
     </app-side-nav>
   </mat-drawer>
   <div class="sidenav-content">

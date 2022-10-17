@@ -1,16 +1,25 @@
 <div class="form" [formGroup]="formGroup">
   <h3>Create Project</h3>
   <mat-form-field appearance="fill">
-    <mat-label>Enter some input</mat-label>
-    <input matInput #input maxlength="10" placeholder="Ex. Nougat" formControlName="name">
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    <mat-label>Enter name for your project</mat-label>
+    <input matInput maxlength="40" placeholder="Project name" formControlName="name">
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Select me</mat-label>
-    <mat-select formControlName="color">
-      <mat-option value="option">Option</mat-option>
+    <mat-label>Select color</mat-label>
+    <mat-select formControlName="color" class="custom-select">
+      <mat-option *ngFor="let item of getColorValues() let i = index"
+                  [value]="item.id"
+                  (click)="setCorrectColorKey(i)">
+        {{item.name}}
+        <span class="color-dot" [style.background-color]="item.color"></span>
+      </mat-option>
+      <mat-select-trigger>
+        {{selectListColorsConfig[formGroup.get('color')?.value]?.name}}
+        <div *ngIf="formGroup.get('color')?.value" class="color-dot"
+              [style.background-color]="selectListColorsConfig[formGroup.get('color')?.value]?.color"></div>
+      </mat-select-trigger>
+      <mat-icon>account</mat-icon>
     </mat-select>
-    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
   </mat-form-field>
   <mat-checkbox formControlName="favorite">Favorite</mat-checkbox>
   <div class="button-row">

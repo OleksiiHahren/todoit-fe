@@ -1,86 +1,66 @@
 import { Injectable } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { BehaviorSubject, map, share } from 'rxjs';
 import { TaskItemInterface } from '../interfaces/task-item.interface';
+import { taskQueries } from './graph-queries/task-queries';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
+  readonly taskQueries = taskQueries;
 
-  readonly getTasksIncomeQuery = gql`
-    query taskIncomes (
-      $paging: Paging!
-    ) {
-      taskIncomes (paging: $paging) {
-        name
-        description
-        project {
-          name
-        }
-      }
-    }
-  `;
-  readonly getTasksTodayQuery = gql`
-    query tasksForToday (
-      $paging: Paging!
-    ) {
-      tasksForToday (paging: $paging) {
-        name
-        description
-        project {
-          name
-        }
-      }
-    }
-  `;
-  readonly createTaskMutation = gql`
-    mutation createTaskWithAllDetails($data: taskInput!) {
-      createTaskWithAllDetails(data: $data) {
-        id
-        name
-      }
-    }
-  `;
-
-  #incomeTasks$ = new BehaviorSubject<TaskItemInterface[]| null>(null);
+  #incomeTasks$ = new BehaviorSubject<TaskItemInterface[] | null>(null);
   incomeTasks$ = this.#incomeTasks$.asObservable();
-  #todayTasks$ = new BehaviorSubject<TaskItemInterface[]| null>(null);
+  #todayTasks$ = new BehaviorSubject<TaskItemInterface[] | null>(null);
   todayTasks$ = this.#todayTasks$.asObservable();
-
-  #futureTasks$ = new BehaviorSubject<TaskItemInterface[]| null>(null);
+  #upcomingTasks$ = new BehaviorSubject<TaskItemInterface[] | null>(null);
+  upcomingTasks$ = this.#upcomingTasks$.asObservable();
 
   constructor(private apollo: Apollo) { }
 
   getAllIncomeTasks(paging = {limit: 10, offset: 0}) {
     return this.apollo.query<{taskIncomes: TaskItemInterface[]}>(
-      {query: this.getTasksIncomeQuery, variables: {paging}}
-    ).pipe(
-      share(),
-      map(res => res.data)
-    ).subscribe(res => {
-      const {taskIncomes} = res;
-        this.#incomeTasks$.next(taskIncomes)
-      }
-    )
-  }
-
-  getAllTodayTasks(paging = {limit: 10, offset: 0}) {
-    return this.apollo.query<{taskIncomes: TaskItemInterface[]}>(
-      {query: this.getTasksTodayQuery, variables: {paging}}
+      {query: this.taskQueries.getTasksIncomeQuery, variables: {paging}}
     ).pipe(
       share(),
       map(res => res.data)
     ).subscribe(res => {
         const {taskIncomes} = res;
-        this.#todayTasks$.next(taskIncomes)
+        this.#incomeTasks$.next(taskIncomes);
       }
-    )
+    );
+  }
+
+  getAllTodayTasks(paging = {limit: 10, offset: 0}) {
+    return this.apollo.query<{tasksForToday: TaskItemInterface[]}>(
+      {query: this.taskQueries.getTasksTodayQuery, variables: {paging}}
+    ).pipe(
+      share(),
+      map(res => res.data)
+    ).subscribe(res => {
+        const {tasksForToday} = res;
+        this.#todayTasks$.next(tasksForToday);
+      }
+    );
+  }
+
+  getAllUpcomingTasks(paging = {limit: 10, offset: 0}) {
+    return this.apollo.query<{tasksForFuture: TaskItemInterface[]}>(
+      {query: this.taskQueries.getTasksUpcomingQuery, variables: {paging}}
+    ).pipe(
+      share(),
+      map(res => res.data)
+    ).subscribe(res => {
+        const {tasksForFuture} = res;
+        this.#upcomingTasks$.next(tasksForFuture);
+      }
+    );
   }
 
   createTask(data: TaskItemInterface) {
     return this.apollo.mutate<TaskItemInterface>({
-      mutation: this.createTaskMutation,
+      mutation: this.taskQueries.createTaskMutation,
       variables: {data}
     });
   }

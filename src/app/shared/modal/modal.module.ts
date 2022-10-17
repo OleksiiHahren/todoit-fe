@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ModalTaskComponent } from './components/modal-task/modal-task.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -24,18 +25,19 @@ import {MatNativeDateModule} from '@angular/material/core';
     ModalProjectComponent,
     ModalTaskComponent
   ],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule
+    ],
   exports: [ModalWrapperComponent]
 })
 export class ModalModule {}
