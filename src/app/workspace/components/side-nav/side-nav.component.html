@@ -38,8 +38,16 @@
 
         </mat-expansion-panel-header>
 
-        <div mat-ripple *ngFor="let item of favoriteProjects" class="expansion-list-item">
+        <div mat-ripple *ngFor="let item of favoriteProjects" class="expansion-list-item" (click)="navigateToProject()">
           {{item.name}}
+          <div [style.background-color]="colors[item.color].color" class="color-dot"></div>
+          <div class="more-icon" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+            <mat-icon>more_vert</mat-icon>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="updateProject.emit(item)">Update</button>
+            <button mat-menu-item>Delete</button>
+          </mat-menu>
         </div>
 
       </mat-expansion-panel>
@@ -55,18 +63,27 @@
           <mat-panel-title>
             <span class="left">Projects</span>
             <button mat-icon-button>
-              <mat-icon (click)="createProject($event)">add</mat-icon>
+              <mat-icon (click)="createProject.emit()">add</mat-icon>
             </button>
           </mat-panel-title>
 
         </mat-expansion-panel-header>
 
-        <div mat-ripple *ngFor="let item of favoriteProjects" class="expansion-list-item">
+        <div mat-ripple *ngFor="let item of allProjects" class="expansion-list-item" (click)="navigateToProject()">
           {{item.name}}
+          <div [style.background-color]="colors[item.color].color" class="color-dot"></div>
+          <div class="more-icon" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+            <mat-icon>more_vert</mat-icon>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="updateProject.emit(item)">Update</button>
+            <button mat-menu-item>Delete</button>
+          </mat-menu>
         </div>
 
       </mat-expansion-panel>
     </mat-accordion>
+
   </div>
 </div>
 

@@ -46,6 +46,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
           const resData = res as HttpResponse<any>;
           const unauthorisedExists =
             resData.body?.errors?.find((el: {extensions: {status: number;}}) => el.extensions.status === 401);
+          console.log(unauthorisedExists, 'unauthorisedExists');
           if (accessToken && unauthorisedExists) {
             this.oldFailedReq = req;
             return this.sendRefreshToken(refreshToken).pipe(

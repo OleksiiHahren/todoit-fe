@@ -6,6 +6,7 @@ export namespace ProjectQueries {
     $paging: Paging!
   ) {
     getOwnProjects (paging: $paging) {
+      id
       name
       color
     }
@@ -17,6 +18,7 @@ export namespace ProjectQueries {
       $paging: Paging!
     ) {
       getFavoriteProjects (paging: $paging) {
+        id
         name
         color
       }
@@ -24,8 +26,8 @@ export namespace ProjectQueries {
   `;
 
   export  const updateOneProject = gql`
-    mutation updateOneProject($data: UpdateOneProjectInput!) {
-      updateOneProject(data: $data) {
+    mutation updateOneProject($input: UpdateOneProjectInput!) {
+      updateOneProject(input: $input) {
         id
         name
         favorite
@@ -35,8 +37,8 @@ export namespace ProjectQueries {
   `;
 
   export  const createOneProject = gql`
-  mutation createOneProject($data: CreateOneProjectInput!) {
-    createOneProject(data: $data) {
+  mutation createOneProject($input: CreateOneProjectInput!) {
+    createOneProject(input: $input) {
       id
       name
       favorite
@@ -46,8 +48,8 @@ export namespace ProjectQueries {
 `;
 
   export  const deleteOneProject = gql`
-    mutation deleteOneProject($data: DeleteOneProjectInput!) {
-      deleteMyProject(data: $data) {
+    mutation deleteOneProject($input: DeleteOneProjectInput!) {
+      deleteMyProject(input: $input) {
         id
       }
     }

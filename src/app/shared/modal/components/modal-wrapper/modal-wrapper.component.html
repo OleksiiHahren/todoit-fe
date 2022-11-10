@@ -3,7 +3,9 @@
 
   </div>
   <div *ngSwitchCase="modalTypesEnum.Project">
-    <app-modal-project (sendEvent)="onDelegation($event)">
+    <app-modal-project
+      [project]="data.payload"
+      (sendEvent)="onDelegation($event)">
     </app-modal-project>
   </div>
   <div *ngSwitchCase="modalTypesEnum.Task">

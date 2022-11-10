@@ -38,8 +38,8 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectService.getFavoriteProjects();
-    this.projectService.getOwnProjects();
+    this.projectService.getFavoriteProjects({limit: 10, offset: 0});
+    this.projectService.getOwnProjects({limit: 10, offset: 0});
   }
 
   addNewTask(): void {
@@ -64,6 +64,41 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/account']);
   }
 
+  onCreateProject() {
+    this.dialog.open(ModalWrapperComponent, {
+      data: {
+        payload: null,
+        type: ModalTypesEnum.Project
+      }
+    }).afterClosed()
+      .pipe(filter(res => res !== null))
+      .subscribe(res => this.projectService.createProject(res));
+  }
+
+  onUpdateProject(data: ProjectItemInterface) {
+    this.dialog.open(ModalWrapperComponent, {
+      data: {
+        payload: data,
+        type: ModalTypesEnum.Project
+      }
+    }).afterClosed()
+      .pipe(filter(res => res !== null))
+      .subscribe(res => this.projectService.updateProject(res));
+  }
+
+  onDeleteProject(id: string) {
+    this.dialog.open(ModalWrapperComponent,
+      {
+        data: {
+          payload: null,
+          type: ModalTypesEnum.Delete
+        }
+      }
+    ).afterClosed()
+      .pipe(filter(res => res !== null))
+      .subscribe(res => this.projectService.deleteProject(id));
+  }
+
   #addTask(data: TaskItemInterface) {
     this.taskService.createTask(data).pipe(
     ).subscribe(
@@ -71,8 +106,8 @@ export class MainComponent implements OnInit {
     );
   }
 
-  #addProject(data: ProjectItemInterface) {
-    this.projectService.createProject(data);
+  #updateProject(){
+
   }
 
 }

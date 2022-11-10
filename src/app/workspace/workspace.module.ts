@@ -9,6 +9,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -16,14 +17,15 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MainComponent,
     SideNavComponent
   ],
-  imports: [
-    CommonModule,
-    WorkspaceRoutingModule,
-    SharedModule,
-    MatButtonModule,
-    MatTreeModule,
-    MatRippleModule,
-    MatExpansionModule
-  ]
+    imports: [
+        CommonModule,
+        WorkspaceRoutingModule,
+        SharedModule,
+        MatButtonModule,
+        MatTreeModule,
+        MatRippleModule,
+        MatExpansionModule,
+        MatMenuModule
+    ]
 })
 export class WorkspaceModule { }

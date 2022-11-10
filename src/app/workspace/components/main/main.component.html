@@ -35,7 +35,9 @@
 <mat-drawer-container class="content-container" autosize>
   <mat-drawer #drawer class="sidebar" mode="side" opened>
     <app-side-nav role="navigation"
-
+                  (createProject)="onCreateProject()"
+                  (updateProject)="onUpdateProject($event)"
+                  (deleteProject)="onDeleteProject($event)"
                   [favoriteProjects]="favoriteProjects$ | async"
                   [allProjects]="projects$ | async"
     >

@@ -50,11 +50,34 @@
       padding: 0;
 
       .expansion-list-item {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
         cursor: pointer;
         padding: 20px 20px 20px 40px;
         font-size: 16px;
         font-family: AlmaSans, "AlmaSans", sans-serif !important;
+
+        .more-icon {
+          display: none;
+          position: absolute;
+          right: 20px;
+          top:17px;
+          width: 10px;
+        }
       }
+      .expansion-list-item:hover {
+        .more-icon {
+          display: flex;
+
+        }
+      }
+    }
+    .color-dot {
+      width: 20px;
+      height: 20px;
+      margin-right: 30px;
+      border-radius: 20px;
     }
   }
 

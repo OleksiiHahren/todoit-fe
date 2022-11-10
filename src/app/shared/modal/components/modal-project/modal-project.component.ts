@@ -1,6 +1,6 @@
 import {
   Component,
-  EventEmitter,
+  EventEmitter, Input,
   OnInit,
   Output,
   ViewEncapsulation
@@ -24,7 +24,7 @@ export class ModalProjectComponent implements OnInit {
 
   formGroup!: FormGroup;
   @Output() sendEvent = new EventEmitter<ProjectInterface | null>();
-
+  @Input() project!: ProjectInterface;
   constructor() { }
 
   ngOnInit(): void {
@@ -49,11 +49,13 @@ export class ModalProjectComponent implements OnInit {
     this.formGroup.get('color')?.patchValue(targetKey);
   }
 
-  #initForm(val?: any): void {
+  #initForm(): void {
+    console.log(this.project)
     this.formGroup = new FormGroup({
-      color: new FormControl(null),
-      name: new FormControl(null, [Validators.required]),
-      favorite: new FormControl(false,),
+      id: new FormControl(this.project.id || null),
+      color: new FormControl(this.project?.color || null, [Validators.required]),
+      name: new FormControl(this.project?.name || null, [Validators.required]),
+      favorite: new FormControl(this.project?.favorite|| false,),
     });
   }
 

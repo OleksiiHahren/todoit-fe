@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
   ModalWrapperComponent
@@ -7,6 +7,12 @@ import { ModalTypesEnum } from '../../../core/enums/modal-types.enum';
 import {
   ProjectItemInterface
 } from '../../../task/interfaces/project-item.interface';
+import {
+  SelectListColorsConfig
+} from '../../../core/enums/select-list-colors.enum';
+import {
+  ProjectInterface
+} from '../../../core/interfaces/create-project.interface';
 
 
 @Component({
@@ -18,7 +24,13 @@ import {
 
 
 export class SideNavComponent implements OnInit {
+  readonly colors : {[index: string]:any}  = SelectListColorsConfig;
+
   panelOpenState = false;
+
+  @Output() createProject = new EventEmitter<void>();
+  @Output() deleteProject = new EventEmitter<string>();
+  @Output() updateProject = new EventEmitter<ProjectInterface>();
 
   @Input() favoriteProjects!: ProjectItemInterface[] | null;
   @Input() allProjects!: ProjectItemInterface[] | null;
@@ -29,13 +41,7 @@ export class SideNavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createProject(event: Event){
-    event.stopPropagation();
-    this.dialog.open(ModalWrapperComponent, {
-      data: {
-        payload: null,
-        type: ModalTypesEnum.Project
-      }
-    })
+  navigateToProject(){
+    console.log('navigate!')
   }
 }
