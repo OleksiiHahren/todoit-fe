@@ -52,7 +52,7 @@ export class ModalProjectComponent implements OnInit {
   #initForm(): void {
     console.log(this.project)
     this.formGroup = new FormGroup({
-      id: new FormControl(this.project.id || null),
+      id: new FormControl(this.project?.id || null),
       color: new FormControl(this.project?.color || null, [Validators.required]),
       name: new FormControl(this.project?.name || null, [Validators.required]),
       favorite: new FormControl(this.project?.favorite|| false,),
