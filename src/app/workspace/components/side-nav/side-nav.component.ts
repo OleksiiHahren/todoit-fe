@@ -6,7 +6,7 @@ import {
 import { ModalTypesEnum } from '../../../core/enums/modal-types.enum';
 import {
   ProjectItemInterface
-} from '../../../task/interfaces/project-item.interface';
+} from '../../../project/interfaces/project-item.interface';
 import {
   SelectListColorsConfig
 } from '../../../core/enums/select-list-colors.enum';

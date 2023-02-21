@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ModalTypesEnum } from 'src/app/core/enums/modal-types.enum';
 import {
@@ -7,6 +7,9 @@ import {
 import {
   TaskItemInterface
 } from '../../../../task/interfaces/task-item.interface';
+import {ProjectService} from "../../../../project/services/project.service";
+import {Observable} from "rxjs";
+import {ProjectItemInterface} from "../../../../project/interfaces/project-item.interface";
 
 @Component({
   selector: 'app-modal-wrapper',
@@ -15,7 +18,10 @@ import {
 })
 export class ModalWrapperComponent implements OnInit {
   readonly modalTypesEnum = ModalTypesEnum;
-  constructor(public dialogRef: MatDialogRef<ModalWrapperComponent>,
+  readonly allProjects$: Observable<ProjectItemInterface[]> = this.projectsService.allProjects$;
+
+  constructor(private projectsService: ProjectService,
+    public dialogRef: MatDialogRef<ModalWrapperComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
     payload: any;
     type: ModalTypesEnum;

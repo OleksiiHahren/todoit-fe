@@ -9,7 +9,10 @@
     </app-modal-project>
   </div>
   <div *ngSwitchCase="modalTypesEnum.Task">
-    <app-modal-task (sendEvent)="onDelegation($event)">
-    </app-modal-task>
+    <ng-container *ngIf="allProjects$ | async as projects">
+      <app-modal-task (sendEvent)="onDelegation($event)" [projects]="projects">
+      </app-modal-task>
+    </ng-container>
+
   </div>
 </div>

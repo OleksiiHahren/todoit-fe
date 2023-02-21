@@ -40,9 +40,9 @@ export namespace taskQueries {
     }
   }
 `;
-  export  const createTaskMutation = gql`
-  mutation createTaskWithAllDetails($data: taskInput!) {
-    createTaskWithAllDetails(data: $data) {
+  export  const createOneTaskInput = gql`
+  mutation createOneTask($input: CreateOneTaskInput!) {
+    createOneTask(input: $input) {
       id
       name
     }

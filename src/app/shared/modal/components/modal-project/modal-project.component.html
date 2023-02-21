@@ -14,7 +14,7 @@
         <span class="color-dot" [style.background-color]="item.color"></span>
       </mat-option>
       <mat-select-trigger>
-        {{selectListColorsConfig[formGroup.get('color')?.value]?.name}}
+        {{selectListColorsConfig[formGroup.get('color')?.value|| 'taupe']?.name }}
         <div *ngIf="formGroup.get('color')?.value" class="color-dot"
               [style.background-color]="selectListColorsConfig[formGroup.get('color')?.value]?.color"></div>
       </mat-select-trigger>

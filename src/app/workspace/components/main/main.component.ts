@@ -13,8 +13,8 @@ import {
 } from '../../../task/interfaces/task-item.interface';
 import {
   ProjectItemInterface
-} from '../../../task/interfaces/project-item.interface';
-import { ProjectService } from '../../../task/services/project.service';
+} from '../../../project/interfaces/project-item.interface';
+import { ProjectService } from '../../../project/services/project.service';
 
 @Component({
   selector: 'app-main',
@@ -47,7 +47,8 @@ export class MainComponent implements OnInit {
       data: {
         payload: null,
         type: ModalTypesEnum.Task
-      }
+      },
+      height:'600px'
     })
       .afterClosed()
       .pipe(filter(res => res !== null))
