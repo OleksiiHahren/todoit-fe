@@ -9,6 +9,7 @@ export namespace ProjectQueries {
       id
       name
       color
+      favorite
     }
   }
 `;
@@ -21,6 +22,7 @@ export namespace ProjectQueries {
         id
         name
         color
+        favorite
       }
     }
   `;
@@ -35,9 +37,20 @@ export namespace ProjectQueries {
         color
         favorite
         tasks (
-          field: "updatedAt"
-          direction: "ASC"
-        )
+          filter: {
+            status: {neq: "done"}
+          }
+          sorting: {
+            field: updatedAt
+            direction: ASC
+          }
+
+        ){
+          name
+          description
+          priority
+          deadline
+        }
       }
     }
   `;

@@ -43,7 +43,7 @@ export class SideNavComponent implements OnInit {
 
   navigateToProject(projectId: string | null) {
     if (projectId) {
-      this.router.navigate([`workspace/project-details/${projectId}`]);
+      this.router.navigate([`workspace/project/${projectId}`]);
     }
   }
 }

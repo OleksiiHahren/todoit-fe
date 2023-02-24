@@ -8,7 +8,7 @@ import {
 const routes: Routes = [
 
   {
-    path: 'details/:projectId',
+    path: ':projectId',
     component: ProjectDetailsComponent
   }
 

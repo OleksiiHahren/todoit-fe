@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, share } from 'rxjs';
 import { ProjectItemInterface } from '../interfaces/project-item.interface';
 import { Apollo } from 'apollo-angular';
-import {
-  ProjectQueries
-} from '../../task/services/graph-queries/project-queries';
+
 import { PagingInterface } from '../../core/interfaces/paging.interface';
 import {
   ProjectInterface
 } from '../../core/interfaces/create-project.interface';
+import {ProjectQueries} from "../graph-queries/project-queries";
 
 @Injectable({
   providedIn: 'root'
