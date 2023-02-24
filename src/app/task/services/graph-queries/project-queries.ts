@@ -25,6 +25,23 @@ export namespace ProjectQueries {
     }
   `;
 
+  export const getProjectWithDetails = gql`
+    query project (
+      $id: ID!
+    ) {
+      project (id: $id) {
+        id
+        name
+        color
+        favorite
+        tasks (
+          field: "updatedAt"
+          direction: "ASC"
+        )
+      }
+    }
+  `;
+
   export  const updateOneProject = gql`
     mutation updateOneProject($input: UpdateOneProjectInput!) {
       updateOneProject(input: $input) {

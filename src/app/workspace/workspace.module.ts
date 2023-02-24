@@ -10,6 +10,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
+import { ProjectModule } from '../project/project.module';
 
 
 @NgModule({
@@ -17,15 +18,16 @@ import { MatMenuModule } from '@angular/material/menu';
     MainComponent,
     SideNavComponent
   ],
-    imports: [
-        CommonModule,
-        WorkspaceRoutingModule,
-        SharedModule,
-        MatButtonModule,
-        MatTreeModule,
-        MatRippleModule,
-        MatExpansionModule,
-        MatMenuModule
-    ]
+  imports: [
+    CommonModule,
+    WorkspaceRoutingModule,
+    ProjectModule,
+    SharedModule,
+    MatButtonModule,
+    MatTreeModule,
+    MatRippleModule,
+    MatExpansionModule,
+    MatMenuModule
+  ]
 })
-export class WorkspaceModule { }
+export class WorkspaceModule {}

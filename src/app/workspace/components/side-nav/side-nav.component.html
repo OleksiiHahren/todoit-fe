@@ -38,7 +38,7 @@
 
         </mat-expansion-panel-header>
 
-        <div mat-ripple *ngFor="let item of favoriteProjects" class="expansion-list-item" (click)="navigateToProject()">
+        <div mat-ripple *ngFor="let item of favoriteProjects" class="expansion-list-item" (click)="navigateToProject(item?.id || null)">
           {{item.name}}
           <div [style.background-color]="colors[item.color].color" class="color-dot"></div>
           <div class="more-icon" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
@@ -69,7 +69,7 @@
 
         </mat-expansion-panel-header>
 
-        <div mat-ripple *ngFor="let item of allProjects" class="expansion-list-item" (click)="navigateToProject()">
+        <div mat-ripple *ngFor="let item of allProjects" class="expansion-list-item" (click)="navigateToProject(item?.id || null)">
           {{item.name}}
           <div [style.background-color]="colors[item.color].color" class="color-dot"></div>
           <div class="more-icon" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">

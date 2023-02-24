@@ -13,6 +13,7 @@ import {
 import {
   ProjectInterface
 } from '../../../core/interfaces/create-project.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,9 +23,8 @@ import {
 })
 
 
-
 export class SideNavComponent implements OnInit {
-  readonly colors : {[index: string]:any}  = SelectListColorsConfig;
+  readonly colors: {[index: string]: any} = SelectListColorsConfig;
 
   panelOpenState = false;
 
@@ -35,13 +35,15 @@ export class SideNavComponent implements OnInit {
   @Input() favoriteProjects!: ProjectItemInterface[] | null;
   @Input() allProjects!: ProjectItemInterface[] | null;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
-  navigateToProject(){
-    console.log('navigate!')
+  navigateToProject(projectId: string | null) {
+    if (projectId) {
+      this.router.navigate([`workspace/project-details/${projectId}`]);
+    }
   }
 }

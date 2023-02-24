@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, share } from 'rxjs';
+import { BehaviorSubject, map, Observable, share } from 'rxjs';
 import { ProjectItemInterface } from '../interfaces/project-item.interface';
 import { Apollo } from 'apollo-angular';
-import { ProjectQueries } from '../../task/services/graph-queries/project-queries';
+import {
+  ProjectQueries
+} from '../../task/services/graph-queries/project-queries';
 import { PagingInterface } from '../../core/interfaces/paging.interface';
 import {
   ProjectInterface
@@ -63,7 +65,6 @@ export class ProjectService {
   }
 
   getOwnProjects(paging: PagingInterface) {
-    console.log(paging)
     return this.apollo.query<{getOwnProjects: ProjectItemInterface[]}>({
       query: this.projectQueries.getOwnProjects,
       variables: {paging}
@@ -72,7 +73,7 @@ export class ProjectService {
       map(res => res.data?.getOwnProjects)
     ).subscribe(
       res => {
-        console.log(res, 'here the res for my projects')
+        console.log(res, 'here the res for my projects');
         if (res) {
           this.#allProjects$.next(res);
         }
@@ -119,5 +120,15 @@ export class ProjectService {
         this.#allProjects$.next([...projects]);
       }
     });
+  }
+
+  getProjectWithDetails(id: string): Observable<{project: ProjectInterface}> {
+    return this.apollo.query<{project: ProjectInterface}>({
+      query: this.projectQueries.getProjectWithDetails,
+      variables: {id}
+    }).pipe(
+      share(),
+      map(res => res.data)
+    );
   }
 }
