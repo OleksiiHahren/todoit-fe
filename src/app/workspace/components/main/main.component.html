@@ -32,8 +32,8 @@
                   (createProject)="onCreateProject()"
                   (updateProject)="onUpdateProject($event)"
                   (deleteProject)="onDeleteProject($event)"
-                  [favoriteProjects]="favoriteProjects$ | async"
-                  [allProjects]="projects$ | async"
+                  [favoriteProjects]="projectService.favoriteProjects$ | async"
+                  [allProjects]="projectService.allProjects$ | async"
     >
     </app-side-nav>
   </mat-drawer>

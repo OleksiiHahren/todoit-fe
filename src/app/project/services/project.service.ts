@@ -36,6 +36,7 @@ export class ProjectService {
         if (res && res?.favorite) {
           const projects = this.#favoriteProjects$.value;
           this.#favoriteProjects$.next([res, ...projects]);
+          this.#allProjects$.next([res, ...projects]);
         } else if (res) {
           const projects = this.#allProjects$.value;
           this.#allProjects$.next([res, ...projects]);
@@ -93,11 +94,23 @@ export class ProjectService {
         }
       }
     }).pipe(
-      share(),
       map(res => {
         return res.data?.updateOneProject;
-      })
-    ).subscribe(() => {
+      }),
+      share(),
+    ).subscribe((res) => {
+      if(res?.favorite){
+        const values = [...this.#favoriteProjects$.value];
+        const targetInd = values.findIndex(el=> el.id === res.id);
+        values[targetInd] = res;
+        this.#favoriteProjects$.next([]);
+        this.#favoriteProjects$.next(values)
+      } else if(res && !res?.favorite){
+        const values = [...this.#allProjects$.value];
+        const targetInd = values.findIndex(el=> el.id === res.id);
+        values[targetInd] = res;
+        this.#allProjects$.next([...values])
+      }
     });
   }
 

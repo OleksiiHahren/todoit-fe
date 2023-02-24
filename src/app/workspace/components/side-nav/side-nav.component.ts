@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
   ModalWrapperComponent
@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
 })
 
 
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit, OnChanges {
   readonly colors: {[index: string]: any} = SelectListColorsConfig;
 
   panelOpenState = false;
@@ -35,10 +35,14 @@ export class SideNavComponent implements OnInit {
   @Input() favoriteProjects!: ProjectItemInterface[] | null;
   @Input() allProjects!: ProjectItemInterface[] | null;
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog, private router: Router, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges() {
+    this.cd.detectChanges()
   }
 
   navigateToProject(projectId: string | null) {

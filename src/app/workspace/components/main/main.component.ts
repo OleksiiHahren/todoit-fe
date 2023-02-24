@@ -24,17 +24,14 @@ import { ProjectService } from '../../../project/services/project.service';
 export class MainComponent implements OnInit {
   toggleSideBar = false;
 
-  favoriteProjects$: Observable<ProjectItemInterface[]>;
-  projects$: Observable<ProjectItemInterface[]>;
 
   constructor(private tokenService: TokenService,
     public dialog: MatDialog,
     private router: Router,
     private taskService: TaskService,
-    private projectService: ProjectService
+    public projectService: ProjectService
   ) {
-    this.favoriteProjects$ = this.projectService.favoriteProjects$;
-    this.projects$ = this.projectService.allProjects$;
+
   }
 
   ngOnInit(): void {
