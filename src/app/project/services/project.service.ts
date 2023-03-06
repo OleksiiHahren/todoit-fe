@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, share } from 'rxjs';
 import { ProjectItemInterface } from '../interfaces/project-item.interface';
 import { Apollo } from 'apollo-angular';
-import {
-  ProjectQueries
-} from '../../task/services/graph-queries/project-queries';
+
 import { PagingInterface } from '../../core/interfaces/paging.interface';
 import {
   ProjectInterface
 } from '../../core/interfaces/create-project.interface';
+import {ProjectQueries} from "../graph-queries/project-queries";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +36,7 @@ export class ProjectService {
         if (res && res?.favorite) {
           const projects = this.#favoriteProjects$.value;
           this.#favoriteProjects$.next([res, ...projects]);
+          this.#allProjects$.next([res, ...projects]);
         } else if (res) {
           const projects = this.#allProjects$.value;
           this.#allProjects$.next([res, ...projects]);
@@ -94,11 +94,23 @@ export class ProjectService {
         }
       }
     }).pipe(
-      share(),
       map(res => {
         return res.data?.updateOneProject;
-      })
-    ).subscribe(() => {
+      }),
+      share(),
+    ).subscribe((res) => {
+      if(res?.favorite){
+        const values = [...this.#favoriteProjects$.value];
+        const targetInd = values.findIndex(el=> el.id === res.id);
+        values[targetInd] = res;
+        this.#favoriteProjects$.next([]);
+        this.#favoriteProjects$.next(values)
+      } else if(res && !res?.favorite){
+        const values = [...this.#allProjects$.value];
+        const targetInd = values.findIndex(el=> el.id === res.id);
+        values[targetInd] = res;
+        this.#allProjects$.next([...values])
+      }
     });
   }
 

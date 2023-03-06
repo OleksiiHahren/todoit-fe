@@ -8,14 +8,8 @@
         <mat-icon>home</mat-icon>
       </button>
       <h4 class="app-label">Todoid</h4>
-      <mat-form-field class="global-search" appearance="fill">
-        <mat-label>Search</mat-label>
-        <input matInput type="text" placeholder="Search">
-        <mat-icon matPrefix>search</mat-icon>
-        <button matSuffix mat-icon-button aria-label="Clear">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
+      <app-global-search-input>
+      </app-global-search-input>
     </div>
 
     <div class="d-flex align-item-center justify-content-center">
@@ -38,8 +32,8 @@
                   (createProject)="onCreateProject()"
                   (updateProject)="onUpdateProject($event)"
                   (deleteProject)="onDeleteProject($event)"
-                  [favoriteProjects]="favoriteProjects$ | async"
-                  [allProjects]="projects$ | async"
+                  [favoriteProjects]="projectService.favoriteProjects$ | async"
+                  [allProjects]="projectService.allProjects$ | async"
     >
     </app-side-nav>
   </mat-drawer>

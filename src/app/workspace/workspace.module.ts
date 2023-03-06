@@ -11,6 +11,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProjectModule } from '../project/project.module';
+import {GlobalSearchModule} from "../global-search/global-search.module";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ProjectModule } from '../project/project.module';
   imports: [
     CommonModule,
     WorkspaceRoutingModule,
+    GlobalSearchModule,
     ProjectModule,
     SharedModule,
     MatButtonModule,
